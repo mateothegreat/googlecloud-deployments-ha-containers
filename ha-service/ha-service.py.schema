@@ -1,0 +1,39 @@
+
+info:
+  title: Container-based high-availability service
+  author: Matthew Davis <matthew@appsoa.io>
+  description: |
+    A high-availability service which can be run across multiple zones in a
+    single region. Each zone contains an autoscaled instance group manager
+    and a network load balancer load balances across all zones.
+
+    Instances run the Google Container VM image with the specified container.
+
+imports:
+- path: service.py
+- path: lb-l3.py
+
+required:
+- zones
+- dockerImage
+- containerSize
+
+properties:
+  containerSize:
+    type: string
+    description: Virtual Machine type.
+  dockerImage:
+    type: string
+    description: Container image to run on VMs.
+  port:
+    type: integer
+    description: Port on which to expose service, both on VMs and in load balancer.
+    default: 80
+  zones:
+    type: array
+    description: Zones in which to run the service. Must be in the same region.
+    minItems: 1
+    items:
+      type: string
+
+

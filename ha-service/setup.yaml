@@ -1,0 +1,17 @@
+
+imports:
+  - path: ha-service.py
+resources:
+  - name: frontend
+    type: ha-service.py
+    properties:
+      containerSize: 'g1-small'
+      dockerImage: 'oskarhane/docker-wordpress-nginx-ssh'
+      dockerEnv:
+        WORDPRESS_DB_HOST: 'changeme'
+        WORDPRESS_DB_USER: changeme
+        WORDPRESS_DB_NAME: changeme
+        WORDPRESS_DB_PASSWORD: changeme
+      zones:
+        - 'asia-east1-c'
+        - 'asia-east1-b'
