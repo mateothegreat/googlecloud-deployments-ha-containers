@@ -14,35 +14,51 @@ def GenerateConfig(context):
   config = {'resources': []}
   
   for zone in context.properties['zones']:
+    
     service = {
+      
         'name': context.env['deployment'] + '-service-' + zone,
         'type': 'service.py',
+        
         'properties': {
+          
             'containerSize': context.properties['containerSize'],
             'dockerImage': context.properties['dockerImage'],
             'port': context.properties['port'],
             'targetPool': lb_name + '-tp',
             'zone': zone
+            
         },
+        
         'disks': [{
-          'name': 'wordpress-persistent-storage',
+          
+          'name': 'asia-east1-c-disk-5',
           'gcePersistentDisk': {
-            # This GCE persistent disk must already exist.
-              'pdName': 'disk-3',
+            
+              # This GCE persistent disk must already exist.
+              'pdName': 'asia-east1-c-disk-5',
               'fsType': 'ext4'
+              
           }
+          
         }]
+        
     }
-
+  
     config['resources'].append(service)
 
   lb = {
-      'name': lb_name,
-      'type': 'lb-l3.py',
-      'properties': {
-          'port': port,
-          'region': region
-      }
+
+    'name': lb_name,
+    'type': 'lb-l3.py',
+    
+    'properties': {
+      
+      'port': port,
+      'region': region
+    
+    }
+  
   }
 
   config['resources'].append(lb)

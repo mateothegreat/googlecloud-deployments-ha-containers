@@ -25,6 +25,7 @@ properties:
   dockerImage:
     type: string
     description: Container image to run on VMs.
+    default: centos
   port:
     type: integer
     description: Port on which to expose service, both on VMs and in load balancer.

@@ -1,3 +1,16 @@
+# Copyright 2015 Google Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 imports:
   - path: ha-service.py
@@ -8,10 +21,10 @@ resources:
       containerSize: 'g1-small'
       dockerImage: 'oskarhane/docker-wordpress-nginx-ssh'
       dockerEnv:
-        WORDPRESS_DB_HOST: 'changeme'
-        WORDPRESS_DB_USER: changeme
-        WORDPRESS_DB_NAME: changeme
-        WORDPRESS_DB_PASSWORD: changeme
+        WORDPRESS_DB_HOST: '104.199.184.46'
+        WORDPRESS_DB_USER: root
+        WORDPRESS_DB_NAME: wordpress
+        WORDPRESS_DB_PASSWORD: root
       zones:
         - 'asia-east1-c'
-        - 'asia-east1-b'
+        # - 'asia-east1-b'

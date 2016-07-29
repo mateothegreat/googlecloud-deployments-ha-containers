@@ -19,25 +19,52 @@ def GenerateManifest(context):
       env_list.append({'name': key, 'value': str(value)})
 
   manifest = {
+    
     'apiVersion': 'v1',
     'kind': 'Pod',
     'metadata': {
-        'name': context.env['name']
-        },
+      # 'name': context.env['name']
+      'name': 'wordpress-nginx-ssh'
+
+    },
     'spec': {
+      
       'containers': [{
-        'name': context.env['name'],
-        'image': context.properties['dockerImage'],
+        
+        # 'name': context.env['name'],
+        'name': 'wordpress-nginx-ssh',
+        
+        # 'image': context.properties['dockerImage'],
+        'image': 'oskarhane/docker-wordpress-nginx-ssh',
+        
         'ports': [{
-          'hostPort': context.properties['port'],
-          'containerPort': context.properties['port']
+            
+            'hostPort': 2222,
+            'containerPort': 22
+            
+          }, {
+            
+            # 'hostPort': context.properties['port'],
+            # 'containerPort': context.properties['port']
+            'hostPort': 80,
+            'containerPort': 80
+            
         }],
+        
+        'imagePullPolicy': 'Always',
+        # 'command': 'nc -p 8080 -l -l -e',
+        
         'volumeMounts': [{
-          'name': 'disk-3',
+          
+          'name': 'asia-east1-c-disk-5',
           'mountPath': '/var/www/html'
+          
         }]
+        
       }]
+      
     }
+    
   }
 
   if env_list:
